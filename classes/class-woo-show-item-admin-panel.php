@@ -7,7 +7,15 @@ require_once __DIR__ . "/class-plugin-base.php";
 class WooShowItemAdminPanel extends PluginBase {
     private static $menu_id = 'woo_show_item_config';
     private static $fields = [
-        "show_single_product_price"
+        "show_single_product_price",
+        "show_list_detail_buy_button",
+        "disable_cart"
+    ];
+
+    private static $checkbox_fields = [
+        "show_single_product_price",
+        "show_list_detail_buy_button",
+        "disable_cart"
     ];
     public $slug;
 
@@ -46,7 +54,9 @@ class WooShowItemAdminPanel extends PluginBase {
             return $curr;
         }, []);
 
-        $values["show_single_product_price"] = isset($_POST["show_single_product_price"]);
+        foreach (self::$checkbox_fields as $checkbox) {
+            $values[$checkbox] = isset($_POST[$checkbox]);
+        }
 
         foreach ($values as $key => $value) {
             $this->update_option($key, $value);
