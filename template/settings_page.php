@@ -8,8 +8,8 @@ do_settings_sections("theme-options");
 
     <div>
         <label>
-            <input type="checkbox" name="show_single_product_price" value="true"
-                <?php checked('true', $this->opt_show_single_product_price()); ?>>
+            <input type="checkbox" name="show_single_product_price" value="1"
+                <?php checked(1, $show_single_product_price); ?>>
             Hide single product price
         </label>
     </div>
